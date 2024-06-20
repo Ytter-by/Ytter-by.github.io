@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление заказа</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="icon" href="images/logo3.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="logo">
+                <img src="images/logo.png" alt="Логотип">
+            </div>
+        </div>
+        <div class="header-divider"></div>
+    </header>
+    <main>
+        <section id="order-details">
+            <h2>Ваш заказ</h2>
+            <div id="order-items"></div>
+            <p>Общая сумма: <span id="order-total-price"></span> ₽</p>
+        </section>
+        <section id="delivery">
+            <h2>Адрес доставки:</h2>
+            <div id="map"></div>
+        </section>
+        <section id="customer-info">
+            <h2>Контактная информация</h2>
+            <form id="order-form">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" name="phone" required>
+                <button type="submit">Заказать</button>
+            </form>
+        </section>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="order-summary"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/nominatim-browser/dist/nominatim-browser.min.js"></script>
+    <script src="checkout.js"></script>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4); /* Полупрозрачный фон */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; /* Центрирование */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .modal-content h2 {
+            margin-top: 0; /* Убираем отступ сверху для надписи "Чек" */
+            padding-top: 20px; /* Добавляем отступ над содержимым "Чек" */
+            border-bottom: 1px solid #ccc; /* Граница под надписью "Чек" */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+
+    
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>О нас</h3>
+                <p>Мы специализируемся на доставке вкуснейших блинов прямо к вам домой или в офис. У нас большой выбор сладких и солёных блинов по доступным ценам.</p>
+                <ul class="socials">
+                    <li><a href="https://vk.com/blinberryrf">ВКонтакте</a></li>
+                    <li><a href="https://t.me/blinbery">Telegram</a></li>
+                    <li><a href="https://www.youtube.com/channel/UC2EzjfHqUmSZjIyubLXABFw">YouTube</a></li>
+                </ul>
+            </div>
+            <div class="footer-section links">
+                <h3>Ссылки</h3>
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Наш ассортимент</a></li>
+                    <li><a href="#">Оформление заказа</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact-form">
+                <h3>Контакты</h3>
+                <form action="#">
+                    <p>Подпишитесь на нашу рассылку:</p>
+                    <input type="email" name="email" placeholder="Введите ваш email">
+                    <button type="submit">Подписаться</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Блины на заказ. Все права защищены.
+        </div>
+    </footer>
+</body>
+</html>
